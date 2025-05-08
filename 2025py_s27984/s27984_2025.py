@@ -14,18 +14,18 @@ import random  # import modułu do generowania liczb losowych
 import re      # import modułu do wyrażeń regularnych (do walidacji ID)
 
 # Funkcja generująca losową sekwencję DNA o zadanej długości
-def generate_dna_sequence(length):
+def generate_dna_sequence(length):  # deklaracja funkcji
     return ''.join(random.choices('ACGT', k=length))  # losowy ciąg A, C, G, T
 
 # Funkcja wstawiająca imię użytkownika w losowym miejscu sekwencji
-def insert_name_into_sequence(sequence, name):
+def insert_name_into_sequence(sequence, name):  # deklaracja funkcji
     position = random.randint(0, len(sequence))  # wybór pozycji wstawienia
     return sequence[:position] + name + sequence[position:]  # zwraca nową sekwencję
 
 # Funkcja obliczająca statystyki (procentowa zawartość nukleotydów + %CG)
-def calculate_statistics(sequence):
+def calculate_statistics(sequence):  # deklaracja funkcji
     # filtrujemy tylko prawdziwe nukleotydy (bez imienia użytkownika)
-    dna_only = ''.join([nt for nt in sequence if nt in 'ACGT'])
+    dna_only = ''.join([nt for nt in sequence if nt in 'ACGT'])  # odfiltrowanie nie-nukleotydów
     length = len(dna_only)  # długość rzeczywistej sekwencji DNA
     stats = {nt: dna_only.count(nt) / length * 100 for nt in 'ACGT'}  # % zawartości
     cg = stats['C'] + stats['G']  # suma procentów C i G
@@ -45,7 +45,7 @@ def save_to_fasta(filename, id_, description, sequence):  # Funkcja zapisująca 
             f.write(sequence[i:i+60] + '\n')  # zapis fragmentu sekwencji
 
 # Główna funkcja programu
-def main():
+def main():  # deklaracja funkcji
     try:  # poczatek bloku try
         length = int(input("Podaj długość sekwencji: "))  # pobranie długości
         if length <= 0:  # sprawdzenei czy dlugosc jest mniejsza lub rowna 0
